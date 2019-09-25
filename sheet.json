@@ -1,10 +1,10 @@
 {
 
-"html": "spaceshipsstarwyrms.html",
-"css": "spaceshipsstarwyrms.html",
+"html": "SnS5e.html",
+"css": "SnS5e.css",
 "authors": "Josh F",
 "roll20userid": "406753",
-"preview": "spaceshipsstarwyrms.png",
+"preview": "SnS5eimage.png",
 "instructions": "it is very important that, if using a half+ caster you keep track of the half+ w/levels in a caster class box, right above the multiclass options, setting this to the wrong value will make your spell slots calculate differently than expected."
 
 }
