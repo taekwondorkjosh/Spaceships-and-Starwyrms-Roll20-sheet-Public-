@@ -6,7 +6,7 @@ the major changes are as follows:
 ---> addition of "barrier hp" section below temporary hit points
 ---> adjustments to textbox names to better match the layout of the character sheet for Spaceships and Starwyrms
 ---> removal of all "by roll20" references to make it comply with the submission policies
+---> Tweaked the NPC sheet to support Ship details a little more organically
 
 Stuff to implement
----> an alternative sheet, like the npc sheet, for vehicles. This may never get implemented due to the complexity of this addition, but i plan on trying!
 ---> who knows whats next!
