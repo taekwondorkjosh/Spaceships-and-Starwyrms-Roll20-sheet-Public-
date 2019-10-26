@@ -23,14 +23,14 @@
     <input class="npc_options-flag" type="checkbox" name="attr_npc_options-flag" checked="checked"><span>y</span>
     <div class="npc_options">
         <div class="row title">
-            <span data-i18n="npc-options-u">NPC OPTIONS</span>
+            <span data-i18n="npc-options-u">NPC/SHIP OPTIONS</span>
         </div>
         <div class="row">
             <span data-i18n="name-u">NAME</span>
             <input type="text" name="attr_npc_name">
         </div>
         <div class="row">
-            <span data-i18n="npc-type-u">NPC TYPE</span>
+            <span data-i18n="npc-type-u">NPC/SHIP TYPE</span>
             <input type="text" name="attr_npc_type" placeholder="Medium fiend, any evil alignment" data-i18n-placeholder="npc-type-place">
         </div>
         <div class="row">
@@ -42,12 +42,28 @@
         <div class="row">
             <span data-i18n="hit-points-u">HIT POINTS</span>
             <input class="num" type="text" name="attr_hp_max" placeholder="82">
-            <span data-i18n="formula-u">FORMULA</span>
+            <span data-i18n="formula-u">FORMULA (ignore for ships)</span>
             <input type="text" name="attr_npc_hpformula" placeholder="11d8 + 33">
         </div>
         <div class="row">
+            <span data-i18n="ship-body-u">SHIP BODY</span>
+            <input class="num" type="text" name="attr_ship_body" placeholder="5">
+        </div>
+        <div class="row">
+            <span data-i18n="barrier-points-u">BARRIER POINTS</span>
+            <input class="num" type="text" name="attr_barrier_max" placeholder="20">
+        </div>
+        <div class="row">
             <span data-i18n="speed-u">SPEED</span>
-            <input type="text" name="attr_npc_speed" placeholder="30 ft., fly 60ft." data-i18n-placeholder="npc-speed-place">
+            <input type="text" name="attr_npc_speed" placeholder="30 ft., fly 60ft. (-2 handling)" data-i18n-placeholder="npc-speed-place">
+        </div>
+        <div class="row">
+            <span data-i18n="turn-value-u">TURN VALUE</span>
+            <input type="text" name="attr_npc_turn_value" placeholder="2 arc" data-i18n-placeholder="npc-turn-value-place">
+        </div>
+        <div class="row">
+            <span data-i18n="ship-charge-u">SHIP CHARGE</span>
+            <input type="num" name="attr_npc_ship_charge" placeholder="2">
         </div>
         <div class="spacer"></div>
         <div class="row">
@@ -215,13 +231,23 @@
         </div>
         <div class="row">
             <span data-i18n="langs-u">LANGUAGES</span>
-            <input type="text" name="attr_npc_languages" placeholder="Abyssal, Common, Infernal" value="—" data-i18n-placeholder="npc-langs-place">
+            <input type="text" name="attr_npc_languages" placeholder="Abyssal, Common, Infernal" data-i18n-placeholder="npc-langs-place">
         </div>
         <div class="row">
-            <span data-i18n="challenge-u">CHALLENGE</span>
+            <span data-i18n="ship-developments-u">DEVELOPMENTS</span>
+            <input type="text" name="attr_npc_developments" placeholder="Cargo Hold, Medical Bay" data-i18n-placeholder="npc-developments-place">
+        </div>
+        <div class="row">
+            <span data-i18n="challenge-u">CHALLENGE/TIER</span>
             <input class="num" type="text" name="attr_npc_challenge" placeholder="1">
             <span data-i18n="xp-u">XP</span>
             <input type="text" name="attr_npc_xp" placeholder="250">
+        </div>
+        <div class="row">
+            <span data-i18n="tier-u">TIER</span>
+            <input class="num" type="text" name="attr_npc_tier" placeholder="1">
+            <span data-i18n="xp-u">XP</span>
+            <input type="text" name="attr_npc_tier_xp" placeholder="1100">
         </div>
         <div class="row">
             <span data-i18n="token_size-u">TOKEN SIZE</span>
@@ -229,7 +255,7 @@
         </div>
         <div class="row">
             <input class="npcspellcastingflag" type="checkbox" name="attr_npcspellcastingflag" value="1">
-            <span data-i18n="spellcast-npc-u">SPELLCASTING NPC</span>
+            <span data-i18n="spellcast-npc-u">SPELLCASTING NPC/SHIP</span>
             <div class="npcspelloptions">
                 <span data-i18n="spell-ability-u">SPELLCASTING ABILITY</span>
                 <select name="attr_spellcasting_ability" style="margin: 0px; width: auto; padding: 0px; height: 15px;">
@@ -270,7 +296,7 @@
         </div>
         <div class="row">
         <input type="checkbox" name="attr_npc" value="1">
-            <span data-i18n="npc-u">NPC</span>
+            <span data-i18n="npc-u">NPC/SHIP</span>
         </div>
         <div class="row">
             <span data-i18n="roll-queries:-u">ROLL QUERIES:</span>
@@ -298,7 +324,7 @@
             </select>
         </div>
         <div class="row">
-            <span data-i18n="npc-name-in-rolls:-u">NPC NAME IN ROLLS:</span>
+            <span data-i18n="npc-name-in-rolls:-u">NPC/SHIP NAME IN ROLLS:</span>
             <select name="attr_npc_name_flag">
                 <option value="{{name=@{npc_name}}}" data-i18n="show">Show</option>
                 <option value="0" data-i18n="hide">Hide</option>
@@ -336,9 +362,29 @@
                 <span class="parens" name="attr_npc_hpformula" style="font-size: 12px; font-weight: normal;"></span>
             </button>
         </div>
+        <input class="flag" type="hidden" name="attr_ship_body">
+        <div class="row status ship_body red">
+            <span data-i18n="ship-body" class="bold">Ship Body</span>
+            <span class="num3" name="attr_ship_body"></span>
+        </div>
+        <input class="flag" type="hidden" name="attr_barrier_max">
+        <div class="row status barrier_max red">
+            <span data-i18n="barrier" class="bold">Barrier Points</span>
+            <span class="num3" name="attr_barrier_max"></span>
+        </div>
         <div class="row red">
             <span data-i18n="speed" class="bold">Speed</span>
             <span name="attr_npc_speed"></span>
+        </div>
+        <input class="flag" type="hidden" name="attr_npc_turn_value">
+        <div class="row status turn_value red">
+            <span data-i18n="turn-value" class="bold">Turn Value</span>
+            <span name="attr_npc_turn_value"></span>
+        </div>
+        <input class="flag" type="hidden" name="attr_npc_ship_charge">
+        <div class="row status turn_value red">
+            <span data-i18n="ship-charge" class="bold">Charge</span>
+            <span name="attr_npc_ship_charge"></span>
         </div>
         <div class="triangle"></div>
         <div class="row red">
@@ -555,11 +601,6 @@
                     <span class="stat" name="attr_npc_survival"></span>
                 </button>
             </span>
-
-
-
-
-
         </div>
         <input class="flag" type="hidden" name="attr_npc_vulnerabilities">
         <div class="row status vulnerabilities red">
@@ -581,18 +622,32 @@
             <span class="bold" data-i18n="cond-imm">Condition Immunities</span>
             <span class="info" name="attr_npc_condition_immunities"></span>
         </div>
-        <div class="row senses red">
+        <input class="flag" type="hidden" name="attr_npc_senses">
+        <div class="row status senses red">
             <span class="bold" data-i18n="senses">Senses</span>
             <span class="info" name="attr_npc_senses"></span>
         </div>
-        <div class="row languages red">
+        <input class="flag" type="hidden" name="attr_npc_languages">
+        <div class="row status languages red">
             <span class="bold" data-i18n="langs">Languages</span>
-            <span class="info languages" name="attr_npc_languages" value="—"></span>
+            <span class="info" name="attr_npc_languages"></span>
         </div>
-        <div class="row red">
+        <input class="flag" type="hidden" name="attr_npc_developments">
+        <div class="row status developments red">
+            <span class="bold" data-i18n="developments">Developments</span>
+            <span class="info" name="attr_npc_developments"></span>
+        </div>
+        <input class="flag" type="hidden" name="attr_npc_challenge">
+        <div class="row status challenge red">
             <span class="bold" data-i18n="challenge">Challenge</span>
             <span class="num" name="attr_npc_challenge"></span>
             <span class="parens xp" name="attr_npc_xp"></span>
+        </div>
+        <input class="flag" type="hidden" name="attr_npc_tier">
+        <div class="row status tier red">
+            <span class="bold" data-i18n="tier">Tier</span>
+            <span class="num" name="attr_npc_tier"></span>
+            <span class="parens xp" name="attr_npc_tier_xp"></span>
         </div>
         <div class="triangle"></div>
         <div class="row traits">
@@ -781,7 +836,7 @@
             <div class="row actiontitle">
                 <span class="title red" style="font-weight: normal; text-align: left;" data-i18n="spells">Spells</span>
             </div>
-            <div class="warning"><span style="color:#d06300;">THIS SECTION IS DEPRECATED. PLEASE TRANSFER ANY SPELLS LISTED HERE INTO THE NEW SPELLS BY LEVEL SECTION, AVAILABLE AFTER SELECTING THE 'SPELLCASTING NPC' OPTION FROM THE NPC OPTIONS ABOVE.</span></div>
+            <div class="warning"><span style="color:#d06300;">THIS SECTION IS DEPRECATED. PLEASE TRANSFER ANY SPELLS LISTED HERE INTO THE NEW SPELLS BY LEVEL SECTION, AVAILABLE AFTER SELECTING THE 'SPELLCASTING NPC/SHIP' OPTION FROM THE NPC/SHIP OPTIONS ABOVE.</span></div>
             <div class="spell-container">
                 <fieldset class="repeating_spell-npc">
                     <div class="spell">
@@ -959,7 +1014,7 @@
 <div class="page core">
     <div class="header">
         <div class="name-container">
-            <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/5th%20Edition%20OGL%20by%20Roll20/images/srd5_360.png" style="padding-bottom: 5px;" alt="SnS by JOSH">
+            <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/5th%20Edition%20OGL%20by%20Roll20/images/srd5_360.png" style="padding-bottom: 5px;" alt="S&S By Josh">
             <input type="text" name="attr_character_name" style="width: 100%;">
             <span class="label" data-i18n="char-name-u">CHARACTER NAME</span>
         </div>
@@ -1416,11 +1471,11 @@
             </div>
             <div class="hp">
                 <div class="top">
-                    <span data-i18n="barrier-hp-max-u">Barrier HP Max</span>
-                    <input type="text" name="attr_barrier_hp_max" title="@{barrier_hp_max}">
+                    <span data-i18n="barr-max-u">Barrier Points Max</span>
+                    <input type="text" name="attr_barrier_max" title="@{barrier_max}">
                 </div>
-                <input type="number" name="attr_barrier_hp" title="@{barrier_hp}">
-                <span class="label" data-i18n="barrier-hp-current-u">CURRENT BARRIER HP</span>
+                <input type="number" name="attr_barrier" title="@{barrier}">
+                <span class="label" data-i18n="barr-current-u">CURRENT BARRIER POINTS</span>
             </div>
             <div class="hdice-dsaves-container" style="width: 242px;">
                 <div class="subcontainer">
@@ -1897,7 +1952,7 @@
 <div class="page bio">
     <div class="header">
         <div class="name-container">
-            <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/5th%20Edition%20OGL%20by%20Roll20/images/srd5_360.png" style="padding-bottom: 5px;" alt="SnS by JOSH">
+            <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/5th%20Edition%20OGL%20by%20Roll20/images/srd5_360.png" style="padding-bottom: 5px;" alt="S&S By Josh">
             <input type="text" name="attr_character_name" style="width: 100%;">
             <span class="label" data-i18n="char-name-u">CHARACTER NAME</span>
         </div>
@@ -1967,7 +2022,7 @@
 <div class="page spells">
     <div class="header">
         <div class="name-container">
-            <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/5th%20Edition%20OGL%20by%20Roll20/images/srd5_360.png" style="padding-bottom: 5px;" alt="SnS by JOSH">
+            <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/5th%20Edition%20OGL%20by%20Roll20/images/srd5_360.png" style="padding-bottom: 5px;" alt="S&S By Josh">
             <input type="text" name="attr_character_name" style="width: 100%;">
             <span class="label" data-i18n="char-name-u">CHARACTER NAME</span>
         </div>
@@ -4078,7 +4133,7 @@
 <div class="page options">
     <div class="header">
         <div class="name-container">
-            <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/5th%20Edition%20OGL%20by%20Roll20/images/srd5_360.png" style="padding-bottom: 5px;" alt="SnS by JOSH">
+            <img src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/5th%20Edition%20OGL%20by%20Roll20/images/srd5_360.png" style="padding-bottom: 5px;" alt="S&S By Josh">
             <input type="text" name="attr_character_name" style="width: 100%;">
             <span class="label" data-i18n="char-name-u">CHARACTER NAME</span>
         </div>
@@ -4220,8 +4275,7 @@
                     <option value="Rogue" data-i18n="rogue">Rogue</option>
                     <option value="Sorcerer" data-i18n="sorcerer">Sorcerer</option>
                     <option value="Warlock" data-i18n="warlock">Warlock</option>
-                    <option value="Wizard" data-i18n="wizard">Wizard</option>
-                    </select>
+                    <option value="Wizard" data-i18n="wizard">Wizard</option></select>
                     <span data-i18n="lvl:-u">LEVEL:</span>
                     <input type="text" name="attr_multiclass1_lvl" value="1" style="width: 28px; text-align: center;">
                     <span data-i18n="subclass:-u" class="sheet-subclass">SUBCLASS:</span>
@@ -4243,7 +4297,7 @@
                     <option value="Sorcerer" data-i18n="sorcerer">Sorcerer</option>
                     <option value="Warlock" data-i18n="warlock">Warlock</option>
                     <option value="Wizard" data-i18n="wizard">Wizard</option>
-                    </select>
+		 </select>
                     <span data-i18n="lvl:-u">LEVEL:</span>
                     <input type="text" name="attr_multiclass2_lvl" value="1" style="width: 28px; text-align: center;">
                     <span data-i18n="subclass:-u" class="sheet-subclass">SUBCLASS:</span>
@@ -4264,8 +4318,7 @@
                     <option value="Rogue" data-i18n="rogue">Rogue</option>
                     <option value="Sorcerer" data-i18n="sorcerer">Sorcerer</option>
                     <option value="Warlock" data-i18n="warlock">Warlock</option>
-                    <option value="Wizard" data-i18n="wizard">Wizard</option>
-                    </select>
+                    <option value="Wizard" data-i18n="wizard">Wizard</option></select>
                     <span data-i18n="lvl:-u">LEVEL:</span>
                     <input type="text" name="attr_multiclass3_lvl" value="1" style="width: 28px; text-align: center;">
                     <span data-i18n="subclass:-u" class="sheet-subclass">SUBCLASS:</span>
@@ -4312,7 +4365,7 @@
                         <option value="none" data-i18n="none-u">NONE</option>
                         <option value="full" data-i18n="spell-full-u">FULL (Cleric, Druid, Wizard)</option>
                         <option value="half" data-i18n="spell-half-u">HALF (Paladin, Ranger)</option>
-                        <option value="half1" data-i18n="spell-half1-u">HALF+ (Psion)</option>
+                        <option value="half1" data-i18n="spell-half1-u">HALF+ (Special)</option>
                         <option value="third" data-i18n="spell-third-u">THIRD (Arcane Fighter/Rogue)</option>
                     </select>
                 </div>
@@ -6611,6 +6664,11 @@
     on("change:npc_challenge", function() {
         update_challenge();
     });
+    
+    
+    on("change:npc_tier", function() {
+        update_tier();
+    });
 
     on("change:npc_str_save_base change:npc_dex_save_base change:npc_con_save_base change:npc_int_save_base change:npc_wis_save_base change:npc_cha_save_base", function(eventinfo) {
         update_npc_saves();
@@ -7529,10 +7587,21 @@
             } else {
                 update["npc_challenge"] = "";
             };
-
+            
+            //TIER
+            if(page.data["Tier"] && page.data["Tier"] != "") {
+                callbacks.push( function() {update_tier();} );
+                update["npc_tier"] = page.data["Tier"];
+            } else {
+                update["npc_tier"] = "";
+            };
+            
             //XP
             if(page.data["data-XP"]) { update["npc_xp"] = page.data["data-XP"].toString().replace(",","");  };
-
+            
+            //TIER XP
+            if(page.data["data-tier-XP"]) { update["npc_tier_xp"] = page.data["data-tier-XP"].toString().replace(",","");  };
+            
             //SIZE, TYPE, ALIGNMENT
             var type = "";
             if(page.data["Size"]) {      type = page.data["Size"] };
@@ -8550,7 +8619,6 @@
 
         });
     };
-
 
     const create_attack_from_spell = function(lvl, spellid, character_id) {
         let update   = {};
@@ -9970,7 +10038,49 @@
             setAttrs(update, {silent: true}, function() {update_pb()});
         });
     };
-
+    
+    var update_tier = function() {
+        getAttrs(["npc_tier"], function(v) {
+            var update = {};
+            var xp = 0;
+            var pb = 0;
+            switch(v.npc_tier.toString()) {
+                
+                case "1":
+                    xp = "1100";
+                    pb = 2;
+                    break;
+                
+                case "2":
+                    xp = "3900";
+                    pb = 3;
+                    break;
+                
+                case "3":
+                    xp = "8400";
+                    pb = 4;
+                    break;
+                
+                case "4":
+                    xp = "15000";
+                    pb = 5;
+                    break;
+                case "5":
+                    xp = "25000";
+                    pb = 6;
+                    break;
+                case "6":
+                    xp = "62000";
+                    pb = 6;
+                    break;
+            }
+            update["npc_tier_xp"] = xp;
+            update["pb_custom"] = pb;
+            update["pb_type"] = "custom";
+            setAttrs(update, {silent: true}, function() {update_pb()});
+        });
+    };
+    
     const update_npc_saves = () => {
         const list = ["npc_str_save_base","npc_dex_save_base","npc_con_save_base","npc_int_save_base","npc_wis_save_base","npc_cha_save_base"];
         const type = "save";
@@ -10761,7 +10871,7 @@
                 setAttrs({version: "2.7"}, function(){
                     finished();
                 });
-                console.log("Spaceships and Starwyrms by Josh v" + v["version"]);
+                console.log("5th Edition S&S by Josh v" + v["version"]);
                 return;
             }
             else if(!version || version === "") {
@@ -16462,7 +16572,6 @@
         /* */
     });
 </script>
-
 
 <!-- CHARACTERMANCER REPEATING SECTIONS -->
 <charmancer class="sheet-repeating-topbar">
